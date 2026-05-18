@@ -272,7 +272,8 @@ export default function RevealInit() {
     function bindCompareMobile() {
       const section = document.querySelector('.cmp-v4'); if (!section) return
       const board = section.querySelector('.cmp-board'); if (!board) return
-      let rebuilt: any = null
+      // Guard: reuse existing .cmp-mobile if already injected (React Strict Mode / double-invoke)
+      let rebuilt: any = section.querySelector('.cmp-mobile') || null
       const render = () => {
         const isMobile = window.innerWidth <= 760
         if (isMobile) {

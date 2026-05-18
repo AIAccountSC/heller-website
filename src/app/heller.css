@@ -7332,6 +7332,56 @@ button:focus-visible {
 .hero-v2 .hero-head { animation: ss-fade-up 0.55s ease both; }
 .hero-v2 .hero-grid-v2 { animation: ss-fade-up 0.65s 0.1s ease both; }
 
+/* =========================================================
+   MOBILE — Horizontal overflow fixes
+   Root cause 1: html has no overflow-x guard so any
+   overflowing child scrolls the entire page.
+   Root cause 2: .stage-layer is overflow:visible so the
+   510px s1-canvas bleeds past its 337px container.
+   ========================================================= */
+
+/* Clip showcase mock-browser frames to their container.
+   Root cause of horizontal overflow: .s1-canvas is 510px wide inside
+   a 337px parent with overflow:visible — contained here instead of
+   on html/body which breaks scroll on WebKit. */
+.stage-layer { overflow: hidden; }
+.stage-visual { overflow: hidden; }
+.showcase, .showcase-v4 { overflow-x: clip; }
+
+/* Force s1 wireframe elements to stay within bounds on mobile */
+@media (max-width: 760px) {
+  .s1-canvas {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: hidden !important;
+  }
+  .s1-page, .s1-row, .s1-hero,
+  .s1-block-group, .s1-tiles {
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Annotated stats: wrap into 2-column grid so 3rd stat isn't clipped */
+  .hero-v2 .hero-head .annotated-stats {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    gap: 16px 8px !important;
+    text-align: center !important;
+    max-width: 100% !important;
+  }
+  .hero-v2 .hero-head .annotated-stats .sup { display: none !important; }
+
+  /* Hero grid: force single column on phones (overrides 2-col !important rule) */
+  .hero-v2 .hero-grid-v2 {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  /* Hero cards: contain browser card overflow */
+  .hg-browser { overflow: hidden !important; }
+}
+
 /* Dark mode: richer hero tint */
 :root[data-theme="dark"] .hero-v2 {
   background:
@@ -7408,4 +7458,139 @@ button.lang-inline:focus-visible {
   outline: 2px solid var(--accent) !important;
   outline-offset: 3px !important;
   border-radius: 3px !important;
+}
+
+/* =========================================================
+   MOBILE — Header simplification
+   On mobile the hamburger drawer handles all nav.
+   Keep: logo · theme toggle · hamburger.
+   Hide: top announce bar · login link · CTA button.
+   ========================================================= */
+@media (max-width: 760px) {
+  /* Top announce bar takes up 43px — hide it on mobile */
+  .hdr-top { display: none !important; }
+
+  /* Login link */
+  .hdr-login { display: none !important; }
+
+  /* Primary CTA in header — lives in hamburger drawer */
+  .hdr-cta .btn--primary { display: none !important; }
+
+  /* Header inner: tighten horizontal padding */
+  .hdr-inner { padding: 0 16px !important; }
+
+  /* Theme toggle: keep but make sure it's the right size */
+  .theme-toggle {
+    width: 38px !important;
+    height: 38px !important;
+    flex-shrink: 0 !important;
+  }
+}
+
+/* =========================================================
+   MOBILE — Hero example cards: stacked-scroll deck
+   Each card is position:sticky at the same top offset.
+   Later cards (higher z-index) slide over earlier ones,
+   creating a "card deck" effect as the user scrolls.
+   ========================================================= */
+@media (max-width: 760px) {
+  /* Make the grid a flex column so sticky works correctly */
+  .hero-v2 .hero-grid-v2 {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0 !important;
+    padding-bottom: 32px !important;
+  }
+
+  /* Stacked-card deck — each card sticks at an increasing top offset
+     so previously-seen cards peek out as thin "tabs" above the current
+     card, creating a physical deck-of-cards scroll illusion.
+     Later cards have higher z-index so they land on top of earlier ones. */
+  .hg-card {
+    position: sticky !important;
+    margin-bottom: 12px !important;
+    border-radius: 18px !important;
+    overflow: hidden !important;
+    box-shadow:
+      0 0 0 1px rgba(0,0,0,0.08),
+      0 20px 48px -12px rgba(0,0,0,0.28),
+      0 6px 16px -4px rgba(0,0,0,0.12) !important;
+    transform-origin: top center !important;
+    transition: box-shadow 0.3s ease !important;
+  }
+
+  /* Each card peeks 14px above the one in front — browser-bar shows as tab */
+  .hg-card:nth-child(1) { top: 72px;  z-index: 1; }
+  .hg-card:nth-child(2) { top: 86px;  z-index: 2; }
+  .hg-card:nth-child(3) { top: 100px; z-index: 3; }
+  .hg-card:nth-child(4) { top: 114px; z-index: 4; }
+  .hg-card:nth-child(5) { top: 128px; z-index: 5; }
+  .hg-card:nth-child(6) { top: 142px; z-index: 6; }
+
+  /* Card content — tall enough to feel immersive on phone */
+  .hg-card .hg-content { height: 230px !important; }
+
+  /* Meta row */
+  .hg-card .hg-meta {
+    background: var(--surface-1) !important;
+    padding: 10px 16px !important;
+    border-top: 1px solid var(--hairline) !important;
+  }
+
+  /* No hover transform — fights sticky on mobile */
+  .hg-card:hover { transform: none !important; }
+}
+
+/* =========================================================
+   COLOUR SYSTEM — 2025 refresh
+   Problems with the current palette:
+     · Accent indigo is correct (modern) but overused —
+       it appears on eyebrows, numbers, icons, borders.
+     · Warm-white surfaces feel slightly grey/cold.
+     · Surface-band (#F4F4F5) is too blue-grey for the
+       "premium craftspeople / praxen / studios" audience.
+   Fixes:
+     · Warm up the base surface very slightly (cream tint).
+     · Reserve indigo strictly for CTAs & interactive states.
+     · Eyebrows / section marks: use ink-4 (muted) not accent.
+     · Pricing popular card: deeper accent ring.
+   ========================================================= */
+
+/* Warmer, less zinc-cold surfaces */
+:root {
+  --surface-0:    #FAFAF8;   /* very slight cream — warmer than zinc-50 */
+  --surface-band: #F5F4F0;   /* warm off-white for banded sections */
+  --surface-tint: #EFEDFF;   /* indigo tint — used very sparingly */
+}
+
+/* Section numbers / eyebrows: muted not accent */
+.section-mark .num {
+  color: var(--ink-4) !important;
+  font-weight: 500 !important;
+}
+
+/* Accent reserved for interactive + brand moments only */
+.btn--primary,
+.hdr-cta .btn--primary,
+a.btn--primary {
+  background: linear-gradient(135deg, var(--acc-600) 0%, var(--acc-500) 100%) !important;
+}
+
+/* Process step numbers: warm, not indigo */
+.step-num, .process-num {
+  color: var(--warm) !important;
+}
+
+/* Pricing popular-card ring: stronger, richer */
+.price-card.pop, .price-card--pop {
+  box-shadow:
+    0 0 0 2px var(--acc-600),
+    0 0 0 5px rgba(79,70,229,0.12),
+    0 24px 64px -16px rgba(79,70,229,0.20) !important;
+}
+
+/* Dark mode: keep surfaces distinctly warm */
+:root[data-theme="dark"] {
+  --surface-0:    #0C0D10;
+  --surface-band: #111318;
 }
