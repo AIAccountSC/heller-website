@@ -3,6 +3,30 @@
 import React, { useState, useEffect } from 'react'
 import { useTheme, useLang, IconSun, IconMoon } from '@/lib/app-state'
 
+function ScaleSiteLogo() {
+  return (
+    <span style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+      {/* Mark: three ascending bars */}
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+        <rect x="0"  y="11" width="4" height="9"  rx="1.5" fill="currentColor" opacity="0.32"/>
+        <rect x="8"  y="5"  width="4" height="15" rx="1.5" fill="currentColor" opacity="0.62"/>
+        <rect x="16" y="0"  width="4" height="20" rx="1.5" fill="currentColor"/>
+      </svg>
+      {/* Wordmark */}
+      <span style={{
+        fontFamily: 'var(--font-sans, system-ui)',
+        fontWeight: 700,
+        fontSize: 15,
+        letterSpacing: '-0.03em',
+        lineHeight: 1,
+        color: 'inherit',
+      }}>
+        Scale<span style={{ color: 'var(--accent)' }}>Site</span>
+      </span>
+    </span>
+  )
+}
+
 export default function Header() {
   const [scrolled, setScrolled] = useState(false)
   const { theme, setTheme } = useTheme()
@@ -33,7 +57,7 @@ export default function Header() {
       <header className={"hdr" + (scrolled ? " scrolled" : "")}>
         <div className="container hdr-inner">
           <a href="#" className="hdr-logo">
-            <img src="/logo.svg" alt="Heller" height="28"/>
+            <ScaleSiteLogo />
           </a>
           <nav>
             <a href="#leistungen">{t('nav.leistungen')}</a>
@@ -43,6 +67,19 @@ export default function Header() {
             <a href="#faq">{t('nav.faq')}</a>
           </nav>
           <div className="hdr-cta">
+            <a href="#" className="hdr-login" style={{
+              fontSize: 13,
+              fontWeight: 500,
+              color: 'var(--ink-2)',
+              textDecoration: 'none',
+              padding: '0 4px',
+              transition: 'color 0.15s',
+            }}
+            onMouseEnter={e => (e.currentTarget.style.color = 'var(--ink-1)')}
+            onMouseLeave={e => (e.currentTarget.style.color = 'var(--ink-2)')}
+            >
+              {t('nav.login')}
+            </a>
             <button
               className="theme-toggle"
               aria-label="Toggle theme"

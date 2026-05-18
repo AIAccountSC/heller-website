@@ -3,8 +3,8 @@ import { Providers } from '@/components/Providers'
 import './heller.css'
 
 export const metadata: Metadata = {
-  title: 'Heller — Premium-Websites für lokale Dienstleister',
-  description: 'Wir verwandeln veraltete Websites in moderne, hochwertige Webauftritte. Für Handwerksbetriebe, Praxen, Studios und Kanzleien in Deutschland.',
+  title: 'ScaleSite — Premium-Websites für lokale Dienstleister',
+  description: 'ScaleSite verwandelt veraltete Websites in moderne, hochwertige Webauftritte — ruhig, klar, professionell. Für Handwerksbetriebe, Praxen, Studios und Kanzleien in Deutschland.',
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

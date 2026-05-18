@@ -7235,3 +7235,107 @@ section[id]::after {
 @media (prefers-reduced-motion: reduce) {
   .tm-quote { background-position: 0% 0 !important; transition: none !important; }
 }
+
+/* =========================================================
+   ScaleSite — UI/UX Enhancement Layer
+   Improvements: hero ambiance, button impact, card hover,
+   scroll-index glass, focus rings, section glow, login link.
+   ========================================================= */
+
+/* Hero: subtle radial gradient glow for depth */
+.hero-v2 {
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -5%,  rgba(79, 70, 229, 0.07) 0%, transparent 68%),
+    radial-gradient(ellipse 45% 35% at 92% 100%, rgba(99, 102, 241, 0.05) 0%, transparent 60%),
+    var(--surface-0);
+}
+
+/* Primary button: gradient + lift-on-hover glow */
+.btn--primary {
+  background: linear-gradient(135deg, var(--acc-600) 0%, var(--acc-500) 100%) !important;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.15s cubic-bezier(0.34,1.56,0.64,1) !important;
+}
+.btn--primary:hover {
+  background: linear-gradient(135deg, var(--acc-700) 0%, var(--acc-600) 100%) !important;
+  box-shadow: 0 6px 28px rgba(79, 70, 229, 0.30) !important;
+  transform: translateY(-2px) !important;
+}
+.btn--primary:active { transform: translateY(0) !important; }
+
+/* Cards: spring-lift on hover */
+.hg-card, .benefit-card, .port-card, .aud-tile {
+  transition: transform 0.28s cubic-bezier(0.34,1.4,0.64,1), box-shadow 0.25s ease !important;
+}
+.hg-card:hover, .benefit-card:hover, .port-card:hover, .aud-tile:hover {
+  transform: translateY(-5px) !important;
+  box-shadow: 0 14px 44px rgba(0,0,0,0.09) !important;
+}
+
+/* Pricing popular card: stronger ring + glow */
+.price-card.pop, .price-card--pop {
+  box-shadow: 0 0 0 2px var(--accent), 0 20px 60px rgba(79, 70, 229, 0.16) !important;
+}
+
+/* Scroll-index: glass surface in both modes */
+.scroll-index {
+  backdrop-filter: blur(10px) saturate(1.4) !important;
+  background: rgba(var(--surface-1-rgb, 255,255,255), 0.72) !important;
+  border: 1px solid rgba(0,0,0,0.06) !important;
+  border-radius: 12px !important;
+  padding: 10px 8px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.07) !important;
+}
+:root[data-theme="dark"] .scroll-index {
+  background: rgba(30, 28, 38, 0.75) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* Hero grid browser cards — subtle gradient on content area */
+.hg-content {
+  transition: filter 0.3s ease;
+}
+.hg-card:hover .hg-content { filter: brightness(1.08); }
+
+/* Section marks — accent dot prefix */
+.section-mark .num {
+  color: var(--accent) !important;
+  font-weight: 600 !important;
+}
+
+/* Focus rings — accessible and on-brand */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 3px !important;
+  border-radius: 4px !important;
+}
+
+/* Login link — responsive hide on narrow nav */
+.hdr-login-link {
+  opacity: 0.7;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+.hdr-login-link:hover { opacity: 1; color: var(--ink-1) !important; }
+@media (max-width: 900px) { .hdr-login-link { display: none !important; } }
+
+/* Hero stats — slightly larger value text */
+.annotated-stats .v {
+  font-size: 1.05em !important;
+  font-weight: 700 !important;
+}
+
+/* Smooth initial page fade */
+@keyframes ss-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.hero-v2 .hero-head { animation: ss-fade-up 0.55s ease both; }
+.hero-v2 .hero-grid-v2 { animation: ss-fade-up 0.65s 0.1s ease both; }
+
+/* Dark mode: richer hero tint */
+:root[data-theme="dark"] .hero-v2 {
+  background:
+    radial-gradient(ellipse 90% 55% at 50% -5%,  rgba(99, 102, 241, 0.10) 0%, transparent 68%),
+    radial-gradient(ellipse 45% 35% at 92% 100%, rgba(99, 102, 241, 0.07) 0%, transparent 60%),
+    var(--surface-0);
+}

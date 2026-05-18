@@ -1,4 +1,4 @@
-// Heller — translation dictionary with v4 content mutations applied statically.
+// ScaleSite — translation dictionary with v4 content mutations applied statically.
 // v4 mutations (from content v4.js) are applied inline — no runtime mutation needed.
 
 function firstSentence(s: string) {
@@ -8,7 +8,7 @@ function firstSentence(s: string) {
 const DICT_BASE = {
   de: {
     topStrip: {
-      l: "HELLER · STUDIO FÜR PREMIUM-WEBAUFTRITTE",
+      l: "SCALESITE · STUDIO FÜR PREMIUM-WEBAUFTRITTE",
       m: "Berlin · Anno MMXXVI",
     },
     nav: {
@@ -21,7 +21,7 @@ const DICT_BASE = {
       cta: "Erstgespräch",
     },
     hero: {
-      mark: "Heller — Positionierung",
+      mark: "ScaleSite — Positionierung",
       title: "Moderne Websites,\ndie [[Vertrauen]] schaffen\nund neue Anfragen [[gewinnen.]]",
       lead: "Premium-Webauftritte für Handwerk, Praxen und Studios in Deutschland. Strategie, Design, Build — aus einer Hand.",
       primary: "Kostenloses Erstgespräch sichern",
@@ -239,16 +239,16 @@ const DICT_BASE = {
     footer: {
       tag: "Premium-Websites für lokale Dienstleister in Deutschland. Strategie, Design und Umsetzung aus einer Hand.",
       colA: "Leistungen", colALinks: [["Website-Projekt", "#leistungen"], ["Unterseiten", "#leistungen"], ["Laufende Betreuung", "#leistungen"], ["Ablauf", "#ablauf"]],
-      colB: "Unternehmen", colBLinks: [["Über Heller", "#"], ["Referenzen", "#referenzen"], ["FAQ", "#faq"], ["Kontakt", "#kontakt"]],
-      colC: "Kontakt", colCLinks: [["hallo@heller.de", "mailto:hallo@heller.de"], ["+49 30 000 000", "tel:+4930000000"], ["LinkedIn", "#"]],
-      copyright: "© 2026 Heller. Alle Rechte vorbehalten.",
+      colB: "Unternehmen", colBLinks: [["Über ScaleSite", "#"], ["Referenzen", "#referenzen"], ["FAQ", "#faq"], ["Kontakt", "#kontakt"]],
+      colC: "Kontakt", colCLinks: [["hallo@scalesite.de", "mailto:hallo@scalesite.de"], ["+49 30 000 000", "tel:+4930000000"], ["LinkedIn", "#"]],
+      copyright: "© 2026 ScaleSite. Alle Rechte vorbehalten.",
       legal: [["Impressum", "#"], ["Datenschutz", "#"], ["AGB", "#"]],
     },
   },
 
   en: {
     topStrip: {
-      l: "HELLER · STUDIO FOR PREMIUM WEB PRESENCES",
+      l: "SCALESITE · STUDIO FOR PREMIUM WEB PRESENCES",
       m: "Berlin · Anno MMXXVI",
     },
     nav: {
@@ -261,7 +261,7 @@ const DICT_BASE = {
       cta: "Consultation",
     },
     hero: {
-      mark: "Heller — Positioning",
+      mark: "ScaleSite — Positioning",
       title: "Modern websites\nthat build [[trust]]\nand win new [[inquiries.]]",
       lead: "Premium websites for tradesmen, practices and studios in Germany. Strategy, design, build — from one team.",
       primary: "Book a free initial consultation",
@@ -479,9 +479,9 @@ const DICT_BASE = {
     footer: {
       tag: "Premium websites for local service businesses across Germany. Strategy, design and build from a single team.",
       colA: "Services", colALinks: [["Website project", "#leistungen"], ["Sub-pages", "#leistungen"], ["Ongoing care", "#leistungen"], ["Process", "#ablauf"]],
-      colB: "Company", colBLinks: [["About Heller", "#"], ["References", "#referenzen"], ["FAQ", "#faq"], ["Contact", "#kontakt"]],
-      colC: "Contact", colCLinks: [["hallo@heller.de", "mailto:hallo@heller.de"], ["+49 30 000 000", "tel:+4930000000"], ["LinkedIn", "#"]],
-      copyright: "© 2026 Heller. All rights reserved.",
+      colB: "Company", colBLinks: [["About ScaleSite", "#"], ["References", "#referenzen"], ["FAQ", "#faq"], ["Contact", "#kontakt"]],
+      colC: "Contact", colCLinks: [["hallo@scalesite.de", "mailto:hallo@scalesite.de"], ["+49 30 000 000", "tel:+4930000000"], ["LinkedIn", "#"]],
+      copyright: "© 2026 ScaleSite. All rights reserved.",
       legal: [["Imprint", "#"], ["Privacy", "#"], ["Terms", "#"]],
     },
   },
