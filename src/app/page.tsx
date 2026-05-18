@@ -1,66 +1,55 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+'use client'
+import dynamic from 'next/dynamic'
 
-export default function Home() {
+// All components loaded dynamically with ssr:false to avoid window/IntersectionObserver SSR issues
+const ScrollProgress = dynamic(() => import('@/components/ScrollProgress'), { ssr: false })
+const Header = dynamic(() => import('@/components/Header'), { ssr: false })
+const Hero = dynamic(() => import('@/components/Hero'), { ssr: false })
+const Marquee = dynamic(() => import('@/components/Marquee'), { ssr: false })
+const TrustBar = dynamic(() => import('@/components/TrustBar'), { ssr: false })
+const Problem = dynamic(() => import('@/components/Problem'), { ssr: false })
+const BeforeAfter = dynamic(() => import('@/components/BeforeAfter'), { ssr: false })
+const BigNumbers = dynamic(() => import('@/components/BigNumbers'), { ssr: false })
+const Audience = dynamic(() => import('@/components/Audience'), { ssr: false })
+const Benefits = dynamic(() => import('@/components/Benefits'), { ssr: false })
+const Comparison = dynamic(() => import('@/components/Comparison'), { ssr: false })
+const Showcase = dynamic(() => import('@/components/Showcase'), { ssr: false })
+const Process = dynamic(() => import('@/components/Process'), { ssr: false })
+const AIDemo = dynamic(() => import('@/components/AIDemo'), { ssr: false })
+const Portfolio = dynamic(() => import('@/components/Portfolio'), { ssr: false })
+const Testimonials = dynamic(() => import('@/components/Testimonials'), { ssr: false })
+const Pricing = dynamic(() => import('@/components/Pricing'), { ssr: false })
+const FAQ = dynamic(() => import('@/components/FAQ'), { ssr: false })
+const FinalCTA = dynamic(() => import('@/components/FinalCTA'), { ssr: false })
+const Footer = dynamic(() => import('@/components/Footer'), { ssr: false })
+const RevealInit = dynamic(() => import('@/components/RevealInit'), { ssr: false })
+
+export default function Page() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <RevealInit />
+      <ScrollProgress />
+      <Header />
+      <main>
+        <Hero />
+        <Marquee />
+        <TrustBar />
+        <Problem />
+        <BeforeAfter />
+        <BigNumbers />
+        <Audience />
+        <Benefits />
+        <Comparison />
+        <Showcase />
+        <Process />
+        <AIDemo />
+        <Portfolio />
+        <Testimonials />
+        <Pricing />
+        <FAQ />
+        <FinalCTA />
       </main>
-    </div>
-  );
+      <Footer />
+    </>
+  )
 }
