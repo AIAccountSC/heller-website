@@ -33,7 +33,7 @@ export default function FinalCTA() {
           <h2 style={{ marginTop: 0 }}>{renderText(t('cta.title'))}</h2>
           <p>{t('cta.body')}</p>
           <div className="ctas">
-            <a href="#" className="btn btn--primary">
+            <a href="mailto:hallo@scalesite.de?subject=Kostenloses%20Erstgespräch%20anfragen" className="btn btn--primary">
               {t('cta.primary')}
               <IconArrowRight size={16}/>
             </a>

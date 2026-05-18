@@ -27,10 +27,11 @@ const RevealInit = dynamic(() => import('@/components/RevealInit'), { ssr: false
 export default function Page() {
   return (
     <>
+      <a href="#main-content" className="skip-link">Zum Hauptinhalt springen</a>
       <RevealInit />
       <ScrollProgress />
       <Header />
-      <main>
+      <main id="main-content">
         <Hero />
         <Marquee />
         <TrustBar />

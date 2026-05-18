@@ -41,7 +41,7 @@ export default function Hero() {
 
   const samples = [
     { ind: "Handwerk",   name: "Tischlerei Müller", h: "Handwerk aus Berlin", tone: "warm",  bg: "linear-gradient(160deg, #8B6F47 0%, #5C4327 100%)" },
-    { ind: "Arztpraxis", name: "Praxis Dr. Sommer",  h: "Zahnmedizin München", tone: "blue",  bg: "linear-gradient(160deg, #C9B89A 0%, #8A7656 100%)" },
+    { ind: "Arztpraxis", name: "Praxis Dr. Sommer",  h: "Zahnmedizin München", tone: "blue",  bg: "linear-gradient(160deg, #3D6B82 0%, #1E3D52 100%)" },
     { ind: "Yoga",       name: "Studio Lichtraum",   h: "Atem · Bewegung",     tone: "sage",  bg: "linear-gradient(160deg, #6B7A5A 0%, #3F4A35 100%)" },
     { ind: "Kanzlei",    name: "Kanzlei Weiss",      h: "Wirtschaftsrecht",    tone: "dark",  bg: "linear-gradient(160deg, #4A4538 0%, #2A2620 100%)" },
     { ind: "Gastro",     name: "Café Salbei",        h: "Kuchen & Kaffee",     tone: "cream", bg: "linear-gradient(160deg, #B89571 0%, #8B6B45 100%)" },

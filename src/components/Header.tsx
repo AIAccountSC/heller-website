@@ -47,11 +47,16 @@ export default function Header() {
         <div className="container inner">
           <span>{t('topStrip.l')}</span>
           <span>{t('topStrip.m')}</span>
-          <span className="lang-inline" onClick={flip} style={{ cursor: 'pointer' }}>
+          <button
+            className="lang-inline"
+            onClick={flip}
+            aria-label={lang === 'de' ? 'Switch to English' : 'Zu Deutsch wechseln'}
+            style={{ cursor: 'pointer', background: 'none', border: 'none', padding: 0, font: 'inherit', color: 'inherit', display: 'inline-flex', alignItems: 'center' }}
+          >
             <span className={lang === 'de' ? 'active' : ''}>DE</span>
             <span style={{ margin: '0 6px', opacity: 0.4 }}>/</span>
             <span className={lang === 'en' ? 'active' : ''}>EN</span>
-          </span>
+          </button>
         </div>
       </div>
       <header className={"hdr" + (scrolled ? " scrolled" : "")}>
@@ -82,7 +87,7 @@ export default function Header() {
             </a>
             <button
               className="theme-toggle"
-              aria-label="Toggle theme"
+              aria-label={theme === 'light' ? 'Dunkelmodus aktivieren' : 'Hellmodus aktivieren'}
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
               title={theme === 'light' ? 'Dark mode' : 'Light mode'}
             >

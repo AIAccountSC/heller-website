@@ -7339,3 +7339,73 @@ button:focus-visible {
     radial-gradient(ellipse 45% 35% at 92% 100%, rgba(99, 102, 241, 0.07) 0%, transparent 60%),
     var(--surface-0);
 }
+
+/* =========================================================
+   ACCESSIBILITY — Skip-to-Content Link
+   First focusable element on page; visually hidden until
+   focused via keyboard so sighted users never see it.
+   ========================================================= */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  display: inline-flex;
+  align-items: center;
+  height: 44px;
+  padding: 0 20px;
+  background: var(--acc-600);
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 0 0 var(--r-2) var(--r-2);
+  text-decoration: none;
+  transition: top 0.15s ease;
+  white-space: nowrap;
+}
+.skip-link:focus {
+  top: 0;
+  outline: 2px solid #fff;
+  outline-offset: -4px;
+}
+
+/* =========================================================
+   MARQUEE — Pause on hover + reduced motion
+   WCAG 2.2.2: provide user control over moving content.
+   ========================================================= */
+.marquee:hover .marquee-track,
+.marquee:focus-within .marquee-track {
+  animation-play-state: paused !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track {
+    animation: none !important;
+    /* Show items statically when motion reduced */
+    display: flex;
+    gap: 32px;
+    overflow: hidden;
+    white-space: nowrap;
+  }
+}
+
+/* =========================================================
+   Lang toggle button — reset browser button styles so it
+   looks identical to the previous <span> approach.
+   ========================================================= */
+button.lang-inline {
+  background: none !important;
+  border: none !important;
+  padding: 0 !important;
+  font: inherit !important;
+  color: inherit !important;
+  cursor: pointer !important;
+  display: inline-flex !important;
+  align-items: center !important;
+}
+button.lang-inline:focus-visible {
+  outline: 2px solid var(--accent) !important;
+  outline-offset: 3px !important;
+  border-radius: 3px !important;
+}

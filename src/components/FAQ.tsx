@@ -21,11 +21,22 @@ export default function FAQ() {
         <div className="faq-list" data-reveal>
           {items.map((item: any, i: number) => (
             <div className={"faq-item" + (open === i ? " open" : "")} key={i}>
-              <button className="faq-q" onClick={() => setOpen(open === i ? -1 : i)} aria-expanded={open === i}>
+              <button
+                id={`faq-q-${i}`}
+                className="faq-q"
+                onClick={() => setOpen(open === i ? -1 : i)}
+                aria-expanded={open === i}
+                aria-controls={`faq-panel-${i}`}
+              >
                 <span>{item.q}</span>
                 <span className="chev"><IconChevDown size={20}/></span>
               </button>
-              <div className="faq-a">
+              <div
+                id={`faq-panel-${i}`}
+                className="faq-a"
+                role="region"
+                aria-labelledby={`faq-q-${i}`}
+              >
                 <p>{item.a}</p>
               </div>
             </div>
