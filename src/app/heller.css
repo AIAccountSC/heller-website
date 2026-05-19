@@ -6038,14 +6038,14 @@ hr.sec-divider,
     font-size: 13px !important;
   }
   .theme-toggle {
-    width: 36px !important;
-    height: 36px !important;
+    width: 44px !important;
+    height: 44px !important;
   }
 
   /* Hamburger button — injected by polish v4.js */
   .hdr-hamburger {
-    width: 38px;
-    height: 38px;
+    width: 44px;
+    height: 44px;
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -6109,7 +6109,7 @@ hr.sec-divider,
     border-bottom: 1px solid rgba(15,23,42,0.08);
   }
   .mobile-drawer-close {
-    width: 38px; height: 38px;
+    width: 44px; height: 44px;
     background: rgba(15,23,42,0.04);
     border: 0;
     border-radius: 10px;
@@ -7166,8 +7166,8 @@ section[id]::after {
     padding: 0 12px !important;
     font-size: 12px !important;
   }
-  .theme-toggle { width: 34px !important; height: 34px !important; }
-  .hdr-hamburger { width: 36px !important; height: 36px !important; }
+  .theme-toggle { width: 44px !important; height: 44px !important; }
+  .hdr-hamburger { width: 44px !important; height: 44px !important; }
 
   /* Top strip smaller */
   .hdr-top { padding: 6px 0 !important; }
@@ -7479,10 +7479,10 @@ button.lang-inline:focus-visible {
   /* Header inner: tighten horizontal padding */
   .hdr-inner { padding: 0 16px !important; }
 
-  /* Theme toggle: keep but make sure it's the right size */
+  /* Theme toggle: WCAG 2.5.5 minimum 44px */
   .theme-toggle {
-    width: 38px !important;
-    height: 38px !important;
+    width: 44px !important;
+    height: 44px !important;
     flex-shrink: 0 !important;
   }
 }
@@ -7542,55 +7542,214 @@ button.lang-inline:focus-visible {
 }
 
 /* =========================================================
-   COLOUR SYSTEM — 2025 refresh
-   Problems with the current palette:
-     · Accent indigo is correct (modern) but overused —
-       it appears on eyebrows, numbers, icons, borders.
-     · Warm-white surfaces feel slightly grey/cold.
-     · Surface-band (#F4F4F5) is too blue-grey for the
-       "premium craftspeople / praxen / studios" audience.
-   Fixes:
-     · Warm up the base surface very slightly (cream tint).
-     · Reserve indigo strictly for CTAs & interactive states.
-     · Eyebrows / section marks: use ink-4 (muted) not accent.
-     · Pricing popular card: deeper accent ring.
+   MOBILE — Global horizontal overflow containment
+   Individual sections can have children wider than viewport
+   (portfolio cards, testimonial grids, marquee tracks).
+   Clip at section level so the page never scrolls right.
    ========================================================= */
-
-/* Warmer, less zinc-cold surfaces */
-:root {
-  --surface-0:    #FAFAF8;   /* very slight cream — warmer than zinc-50 */
-  --surface-band: #F5F4F0;   /* warm off-white for banded sections */
-  --surface-tint: #EFEDFF;   /* indigo tint — used very sparingly */
+.section,
+.hero,
+.portfolio-section,
+.testimonials-section,
+.pricing-section,
+.benefits-section,
+.comparison-section,
+.showcase,
+.ai-section,
+.final-cta-section,
+.big-numbers-section,
+.fx-section,
+#problem,
+#vergleich,
+#zielgruppe,
+#ablauf,
+#faq {
+  overflow-x: clip;
+}
+.portfolio-strip {
+  max-width: 100%;
+}
+@media (max-width: 760px) {
+  .port-card {
+    flex: 0 0 min(380px, 85vw) !important;
+  }
+  .testimonials-grid {
+    max-width: 100% !important;
+    overflow: hidden !important;
+  }
+  .tm-card {
+    max-width: 100% !important;
+    min-width: 0 !important;
+  }
 }
 
-/* Section numbers / eyebrows: muted not accent */
+/* =========================================================
+   COLOUR SYSTEM — Indigo + Pure White
+   Premium, minimal palette. No warm cream, no template feel.
+   Pure white canvas + bold indigo CTAs + zinc neutrals.
+   Inspired by Linear, Vercel, Raycast.
+   ========================================================= */
+
+:root {
+  --surface-0:    #FFFFFF;
+  --surface-1:    #FFFFFF;
+  --surface-band: #F9FAFB;
+  --surface-tint: #EEF2FF;
+
+  --warm-white:   #FFFFFF;
+  --soft-white:   #FFFFFF;
+  --bone:         #F9FAFB;
+
+  --warm:         var(--ink-4);
+  --warm-soft:    #F3F4F6;
+  --warm-300:     #D1D5DB;
+  --warm-700:     #374151;
+}
+
+/* Section numbers / eyebrows: muted zinc, not accent */
 .section-mark .num {
-  color: var(--ink-4) !important;
+  color: var(--ink-5) !important;
   font-weight: 500 !important;
 }
 
-/* Accent reserved for interactive + brand moments only */
-.btn--primary,
-.hdr-cta .btn--primary,
-a.btn--primary {
-  background: linear-gradient(135deg, var(--acc-600) 0%, var(--acc-500) 100%) !important;
-}
-
-/* Process step numbers: warm, not indigo */
+/* Process step numbers: indigo accent, not bronze/warm */
 .step-num, .process-num {
-  color: var(--warm) !important;
+  color: var(--acc-500) !important;
 }
 
-/* Pricing popular-card ring: stronger, richer */
+/* Pricing popular-card ring */
 .price-card.pop, .price-card--pop {
   box-shadow:
     0 0 0 2px var(--acc-600),
-    0 0 0 5px rgba(79,70,229,0.12),
-    0 24px 64px -16px rgba(79,70,229,0.20) !important;
+    0 0 0 5px rgba(79,70,229,0.10),
+    0 24px 64px -16px rgba(79,70,229,0.18) !important;
 }
 
-/* Dark mode: keep surfaces distinctly warm */
+/* Cards: pure white with very subtle grey border */
+.port-card,
+.tm-card,
+.benefit-card,
+.price-card {
+  background: #FFFFFF !important;
+  border-color: #E5E7EB !important;
+}
+
+/* Banded sections: barely-there cool grey, not cream */
+.section-mark span {
+  color: var(--ink-5) !important;
+}
+
+/* =========================================================
+   ATMOSPHERE — Subtle single-tone blooms instead of rainbow
+   Each section gets a faint indigo or grey radial, not a
+   different colour per section (which looked template-ish).
+   ========================================================= */
+.section::after,
+.hero::after,
+section[id]::after {
+  opacity: 0.3 !important;
+}
+
+.hero::after {
+  background: radial-gradient(ellipse 50% 40% at 70% 20%,
+    rgba(99, 102, 241, 0.25),
+    transparent 65%) !important;
+}
+
+#problem::after,
+#vergleich::after,
+.big-numbers-section::after,
+#zielgruppe::after,
+.benefits-section::after,
+.fx-section::after,
+section[id="referenz"]::after,
+.comparison-section::after,
+.showcase::after,
+#ablauf::after,
+.portfolio-section::after,
+.testimonials-section::after,
+.pricing-section::after,
+#faq::after {
+  background: radial-gradient(ellipse 55% 45% at 50% 50%,
+    rgba(99, 102, 241, 0.08),
+    transparent 70%) !important;
+}
+
+/* Dark mode: keep surfaces deep and cool */
 :root[data-theme="dark"] {
-  --surface-0:    #0C0D10;
-  --surface-band: #111318;
+  --surface-0:    #09090B;
+  --surface-1:    #111113;
+  --surface-band: #0A0A0C;
+  --surface-tint: #111827;
+  --warm-white:   var(--surface-0);
+  --soft-white:   var(--surface-1);
+  --bone:         var(--surface-band);
+}
+:root[data-theme="dark"] .port-card,
+:root[data-theme="dark"] .tm-card,
+:root[data-theme="dark"] .benefit-card,
+:root[data-theme="dark"] .price-card {
+  background: var(--surface-1) !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+/* Marquee — crisp black, not warm */
+.marquee { background: #09090B !important; }
+.marquee-track { color: #A1A1AA !important; }
+.marquee-track .sep { color: #3F3F46 !important; }
+
+/* =========================================================
+   GLOBAL FIX — box-sizing on all buttons
+   Prevents padding from extending past parent width.
+   ========================================================= */
+.btn,
+.btn--primary,
+.btn--ghost,
+.btn--accent,
+.btn--quiet {
+  box-sizing: border-box !important;
+  max-width: 100% !important;
+}
+
+/* =========================================================
+   MOBILE — Hero CTA buttons must not overflow viewport
+   ========================================================= */
+@media (max-width: 760px) {
+  .hero-ctas {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+  .hero-ctas .btn {
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+/* =========================================================
+   WCAG 2.5.5 — Touch targets >= 44px
+   Hamburger, theme toggle, drawer close, BA tabs.
+   ========================================================= */
+@media (max-width: 760px) {
+  .hdr-hamburger {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+  .theme-toggle {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+  .mobile-drawer-close {
+    width: 44px !important;
+    height: 44px !important;
+    min-width: 44px !important;
+    min-height: 44px !important;
+  }
+  .ba-mobile-tabs button {
+    min-height: 44px !important;
+  }
 }
